@@ -20,7 +20,7 @@ mongoose
     .catch((err) => console.log(err));
 
 const ISMS_schema = new mongoose.Schema({
-    id: Number,
+    id: String,
     name: String,
     rank: String,
     number: String,
