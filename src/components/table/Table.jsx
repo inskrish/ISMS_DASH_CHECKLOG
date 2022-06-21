@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useCallback ,setItem} from 'react';
 import './App.css';
 import MaterialTable from 'material-table'
 import axios from "axios";
@@ -7,8 +7,51 @@ import Button from '@mui/material/Button';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Table from '@mui/material/Table';
 import Fingerprint from '@mui/icons-material/Fingerprint';
+import moment from "moment";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+
 
 function App() {
+
+
+    // const items = [
+        
+    //   ]
+
+    //   const handleOnSearch = (string, results) => {
+    //     // onSearch will have as the first callback parameter
+    //     // the string searched and for the second the results.
+    //     console.log(string, results)
+    //   }
+    
+    //   const handleOnHover = (result) => {
+    //     // the item hovered
+    //     console.log(result)
+    //   }
+    
+    //   const handleOnSelect = (item) => {
+    //     // the item selected
+    //     console.log(item)
+    //   }
+    
+    //   const handleOnFocus = () => {
+    //     console.log('Focused')
+    //   }
+    
+    //   const formatResult = (item) => {
+    //     return (
+    //       <>
+    //         <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
+    //         <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+    //       </>
+    //     )
+    //   }
+    
+      
+
+
+
+
     const columns = [
         {
             title: "Avatar",
@@ -23,7 +66,39 @@ function App() {
         },
         {
             field: "name",
-            title: "Name"
+            title: "Name",
+        //   cellStyle: { fontSize: '1.3rem', minWidth: '300px' },
+        //     render: data => {
+        //          if (data && data.name) {
+        //         const nameSplit = _.split(data.name, '-'); 
+        //         return namesplit[2];
+        //          }
+        //         },
+        //         editComponent: props => 
+        //         <FormControl 
+        //         className="mt-8 mb-16 text-13 min-w-320" 
+        //         fullWidth
+        //          onblur={this.autoSubmit}
+        //          >
+                 
+        //         <Async
+        //         value={this.defaultValue(props)}
+        //          loadOptions={this.promiseOptions}
+        //           defaultOptions
+        //            cacheOptions
+        //             placeholder={'Search name...'}
+        //              onChange={e => {
+        //         props.onChange(e.value); }} 
+        //         onblur={this.autoSubmit}
+        //     />
+        //         { !props.data.name &&( 
+        //             <FormHelperText style={{ color: "#f44336" }}
+        //          >
+        //         name is required! 
+        //         </FormHelperText>
+        //          )}    
+        //          </FormControl>
+                 
         },
         {
             field: "rank",
@@ -81,7 +156,29 @@ function App() {
     }, []);
     const getData = () => {
         axios("http://localhost:2500/users/").then((res) => {
+            res.data.forEach(function(element, index)
+            {
+                // if(element.timein != null){
+                // var d=element.timein
+                // var a=d.split("T")
+                // console.log(a);
+                // element.timein = a[0]
+
+                // }
+            // console.log(moment(element.timein).format('MM/DD/YYYY'))
+            
+            element.datein= moment(element.datein).format('MM/DD/YYYY');
+            element.timein= moment(element.timein).format('LTS');
+            element.dateout= moment(element.dateout).format('MM/DD/YYYY');
+            element.timeout= moment(element.timeout).format('LTS');
+            
+            // items.push({id:element.id,name:element.name})
+            // console.log(items)            
+            
+            }
+            );
             console.log(res.data);
+
             setData(res.data);
             res.data.forEach((element, index) => element.__id2 = index);
         });
@@ -92,6 +189,22 @@ function App() {
         <div className="App">
             <h1 align="center">INS Valsura</h1>
             <h4 align='center'>Integrated Security Management System</h4>
+          
+             {/* <header className="App-header">
+        <div style={{ width: 400 }}>
+          <ReactSearchAutocomplete
+            items={items}
+            onSearch={handleOnSearch}
+            onHover={handleOnHover}
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+            formatResult={formatResult}
+          />
+        </div>
+      </header>
+ */}
+
             <MaterialTable
                 title=""
                 data={data}
