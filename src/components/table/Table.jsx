@@ -12,8 +12,8 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import Detailpage from "../../components/Detailpage/Detailpage";
 // import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Modal from 'react-bootstrap/Modal';
-import Modal from "../../components/Detailpage/Modal";
+import Modal from 'react-bootstrap/Modal';
+// import Modal from "../../components/Detailpage/Modal";
 
 import {render} from 'react-dom';
 
@@ -160,6 +160,7 @@ function App() {
     useEffect(() => {
         getData();
     }, []);
+    
     const getData = () => {
         axios("http://localhost:2500/users/").then((res) => {
             res.data.forEach(function(element, index)
@@ -192,7 +193,7 @@ function App() {
 
 
     // function Example() {
-    //     // const [show, setShow] = useState(false);
+    //     const [show, setShow] = useState(false);
       
     //     return (
     //       <>
@@ -228,15 +229,51 @@ function App() {
     //   }
       
     //   render(<Example />);
-    const [modalOpen, setModalOpen] = useState(false);
+    // const [modalOpen, setModalOpen] = useState(false);
+
+
+    const [data1, setData1] = useState([]);
+    useEffect(() => {
+        getData1();
+    }, []);
+
+    const getData1 = (data1) => {
+        axios(`http://localhost:2500/users/${data1}`).then((res) => {
+            // res.data.forEach(function(element, index){
+                console.log(res.data);
+            // })
+            
+        });
+    };
+
+
+
 
     return (
         
         <div className="App">
-        <img className="logo" src={require('./mylogo.png')} width="150px" height="150px" />
-            <h1 align="center">INS Valsura</h1>
+        {/* <div className='row'>
+        <div className='column'>
+        <img className="logo" src={require('./mylogo.png')} width="125px" height="125px" />
+
+            </div>
+            <div className='column'>
             <h4 align='center'>Integrated Security Management System</h4>
+            </div>
           
+        </div>
+ */}
+
+      
+
+
+<div className="container1">
+<img className="logo" src={require('./mylogo.png')} width="125px" height="125px" />
+<h4 align='center' >Integrated Security Management System</h4>
+
+</div>
+
+
              {/* <header className="App-header">
         <div style={{ width: 400 }}>
           <ReactSearchAutocomplete
@@ -267,14 +304,16 @@ function App() {
                     {
                         icon: 'save',
                         tooltip: 'Save User',
-                        // onClick: (event, data) => alert("You saved " + data.name)
+                        onClick: (event, data) => {setData1(data.adharno)}
+                        // alert("You saved " + data.name)
                         // onClick: (event, data) =>  {
                             
                         // }
                         // onClick: () => this.Example
-                        onClick : () => {
-                             setModalOpen(true);
-                                }
+                        // onClick : () => {
+                        //      setModalOpen(true);
+                        //         }
+                        
                     }
                 ]}
                 components={{
@@ -293,9 +332,10 @@ function App() {
                             <Fingerprint sx={{ fontSize: 30 }} />
                         </Button>
                     ),
+                    // render: <Example/>
                 }}
             />
-             {modalOpen && <Modal setOpenModal={setModalOpen} />}
+             {/* {modalOpen && <Modal setOpenModal={setModalOpen} />} */}
         </div>
     );
 }

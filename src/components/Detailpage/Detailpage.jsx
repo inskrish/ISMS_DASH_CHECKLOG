@@ -116,6 +116,9 @@ function Detailpage() {
         </Modal.Body>
       </Modal> */}
       {console.log("hiii")};
+
+      
+
     </>
   );
 }

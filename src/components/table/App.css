@@ -63,6 +63,60 @@
   .logo {
  
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
   }
+
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+/* .App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Nunito", sans-serif;
+} */
+
+.openModalBtn {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  background-color: cornflowerblue;
+  color: white;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  font-size: 100px;;
+
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container1{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0%;
+  margin: 0%;
+}
+.container1 h4{
+  width: 100%;
+  font-size: 3.5rem;
+  font-weight: lighter;
+
+  /* margin-right: 30px; */
+}
