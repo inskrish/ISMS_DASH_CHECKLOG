@@ -7,11 +7,14 @@ import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
 import FetchSailor from "../../components/API/FetchSailor"
 import Date_filter from "../../components/Date_filter/Date_filter";
+import Detailpage from "../../components/Detailpage/Detailpage";
+
 
 const Home = () => {
   return (
     <div className="home">
-      <Sidebar />
+    {/* <Detailpage/> */}
+      {/* <Sidebar /> */}
       {/* <FetchSailor/> */}
       <div className="homeContainer">
         {/* <Navbar /> */}
@@ -30,7 +33,7 @@ const Home = () => {
 
 
         <div className="listContainer">
-          <div className="listTitle">Check Logs</div>
+          <div className="listTitle"></div>
           <Table />
         </div>
       </div>

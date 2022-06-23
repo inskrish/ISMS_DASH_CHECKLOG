@@ -9,7 +9,13 @@ import Table from '@mui/material/Table';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 import moment from "moment";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import Detailpage from "../../components/Detailpage/Detailpage";
+// import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import Modal from 'react-bootstrap/Modal';
+import Modal from "../../components/Detailpage/Modal";
 
+import {render} from 'react-dom';
 
 function App() {
 
@@ -185,8 +191,49 @@ function App() {
     };
 
 
+    // function Example() {
+    //     // const [show, setShow] = useState(false);
+      
+    //     return (
+    //       <>
+    //         <Button variant="primary" onClick={() => setShow(true)}>
+    //           Custom Width Modal
+    //         </Button>
+      
+    //         <Modal
+    //           show={show}
+    //           onHide={() => setShow(false)}
+    //           dialogClassName="modal-90w"
+    //           aria-labelledby="example-custom-modal-styling-title"
+    //         >
+    //           <Modal.Header closeButton>
+    //             <Modal.Title id="example-custom-modal-styling-title">
+    //               Custom Modal Styling
+    //             </Modal.Title>
+    //           </Modal.Header>
+    //           <Modal.Body>
+    //             <p>
+    //               Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
+    //               commodi aspernatur enim, consectetur. Cumque deleniti temporibus
+    //               ipsam atque a dolores quisquam quisquam adipisci possimus
+    //               laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
+    //               accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
+    //               reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
+    //               deleniti rem!
+    //             </p>
+    //           </Modal.Body>
+    //         </Modal>
+    //       </>
+    //     );
+    //   }
+      
+    //   render(<Example />);
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
+        
         <div className="App">
+        <img className="logo" src={require('./mylogo.png')} width="150px" height="150px" />
             <h1 align="center">INS Valsura</h1>
             <h4 align='center'>Integrated Security Management System</h4>
           
@@ -204,7 +251,7 @@ function App() {
         </div>
       </header>
  */}
-
+ 
             <MaterialTable
                 title=""
                 data={data}
@@ -220,7 +267,14 @@ function App() {
                     {
                         icon: 'save',
                         tooltip: 'Save User',
-                        onClick: (event, data) => alert("You saved " + data.name)
+                        // onClick: (event, data) => alert("You saved " + data.name)
+                        // onClick: (event, data) =>  {
+                            
+                        // }
+                        // onClick: () => this.Example
+                        onClick : () => {
+                             setModalOpen(true);
+                                }
                     }
                 ]}
                 components={{
@@ -232,6 +286,7 @@ function App() {
                             variant=""
                             style={{ textTransform: 'none' }}
                             size="small"
+                            // onClick={()=>{setModalOpen(true);}}
                         >
                             {/* <Fingerprint color="secondary" /> */}
 
@@ -240,6 +295,7 @@ function App() {
                     ),
                 }}
             />
+             {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </div>
     );
 }

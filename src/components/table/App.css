@@ -60,3 +60,9 @@
     border: 1px solid #ccc;
     z-index: 999;
   }
+  .logo {
+ 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
