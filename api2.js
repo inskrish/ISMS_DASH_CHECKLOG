@@ -55,4 +55,18 @@ app.get("/users/", async (req, res) => {
     }
 });
 
+
+
+app.get('/users/:adharno', async (req, res) => {
+    try{
+        const data = await entry.find({ "adharno":req.params.adharno });
+        res.send(data)
+        // console.log(data);
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+
 app.listen(2500, () => console.log("Server listening to port 2500"));
